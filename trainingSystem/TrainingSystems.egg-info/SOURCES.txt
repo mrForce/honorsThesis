@@ -1,0 +1,11 @@
+setup.py
+TrainingSystems/__init__.py
+TrainingSystems/interfaces.py
+TrainingSystems/trainedsystems.py
+TrainingSystems.egg-info/PKG-INFO
+TrainingSystems.egg-info/SOURCES.txt
+TrainingSystems.egg-info/dependency_links.txt
+TrainingSystems.egg-info/top_level.txt
+TrainingSystems/pwm/__init__.py
+TrainingSystems/pwm/classification_pwm.py
+TrainingSystems/pwm/pwm.py

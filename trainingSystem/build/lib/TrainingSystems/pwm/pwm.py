@@ -1,0 +1,7 @@
+class PWM:
+    def __init__(self, positive_dataset, negative_dataset, pseodocount_value):
+        pwm = dict()
+        
+        
+        
+        

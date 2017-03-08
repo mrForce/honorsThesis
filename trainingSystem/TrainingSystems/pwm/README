@@ -1,0 +1,9 @@
+This folder is about using Position Weight Matrices to model the IC50.
+
+There are two things we can do: either weight using the IC50, or, seperate them into good-binders and poor/non-binders, and then create a PWM for each set, and then take the ratio of the scores.
+
+
+classification_pwm.py does the later, while ic50_pwm.py does the former.
+
+
+
