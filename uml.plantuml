@@ -1,0 +1,34 @@
+abstract class AbstractBinaryClassifier{
+	 {abstract} boolean classify(String peptide)
+	 {abstract} void train([(String peptide, boolean doesBind)...], alphabet)
+}
+
+abstract class AbstractAffinityPredictor{
+	 {abstract} double predict_affinity(String peptide)
+	 {abstract} void train([(String peptide, double Kd)...], alphabet)
+}
+
+class TrainedSystems {
+      void trainBinary(String classifier_name, AbstractBinaryClassifier classifier_object)
+      void trainAffinity(String predictor_name, AbstractAffinityPredictor predictor_object)
+      Dict(String classifier_name, Dict(String peptide, boolean binds))  classify([String peptide,...])
+      Dict(String predictor_name, Dict(String peptide, double Kd)) predict_affinities([String peptide,...])
+}
+
+TrainedSystems "1" o-- "many" AbstractBinaryClassifier
+TrainedSystems "1" o-- "many" AbstractAffinityPredictor
+
+class ClassificationPWM{
+   {static} PWM computePWM(dataset, pseudocount_value, alphabet, background_pwm)
+   {static} double computeScore(pwm, sequence)
+   double computePositiveScore(sequence)
+   double computeNegativeScore(sequence)
+}
+
+class PWMBinaryClassifier{
+      void train(dataset, alphabet)
+      boolean classify(peptide)
+}
+
+AbstractBinaryClassifier <|-- PWMBinaryClassifier
+PWMBinaryClassifier "1" *-- "1" ClassificationPWM : contains
