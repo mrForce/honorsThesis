@@ -1,0 +1,3 @@
+HIV proteome: http://www.uniprot.org/uniprot/?query=reviewed%3Ayes+AND+proteome%3Aup000005640
+Human proteome: http://www.uniprot.org/uniprot/?query=reviewed%3Ayes+AND+proteome%3Aup000005640
+Influenza proteome: http://www.uniprot.org/uniprot/?query=taxonomy:%22Viruses%20[10239]%22%20keyword:%22Reference%20proteome%20[KW-1185]%22%20host:%22Homo%20sapiens%20(Human)%20[9606]%22%20organism:influenza&fil=organism%3A%22Influenza+A+virus+%28strain+A%2FSeal%2FMassachusetts%2F1%2F1980+H7N7%29+%5B384493%5D%22&sort=score
