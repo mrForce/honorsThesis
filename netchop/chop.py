@@ -40,5 +40,5 @@ if len(sys.argv) >= 4:
                 for x in pieces:
                     f.write(x + '\n')
 else:
-    print('usage: python chop.py output.txt chunk_width proteome1.fasta proteome2.fasta ...')
+    print('usage: python chop.py output.txt chunk_width proteome1.fasta proteome2.fasta...')
             

@@ -10,7 +10,7 @@ class ClassificationPWM:
     """
     positive_dataset and negative_dataset are both lists of sequences all of the same length.
 
-    Only pass in background_dataset if you want to.
+    Only pass in background_dataset if you want to. It should be a list of sequences, each of the same length as the sequences in the positive and negative datasets
 
     alphabet should be a list of symbols.
     """
@@ -18,9 +18,9 @@ class ClassificationPWM:
         positive_pwm = dict()
         negative_pwm = dict()
         if background_dataset: 
-            background_freqs = calculateBackgroundFreqs(background_dataset)
-            self.positive_pwm = computePWM(positive_dataset, pseudocount_value, alphabet, background_freqs)
-            self.negative_pwm = computePWM(negative_dataset, pseudocount_value, alphabet, background_freqs)
+            background_pwm = computePWM(background_dataset, 0.01, alphabet)
+            self.positive_pwm = computePWM(positive_dataset, pseudocount_value, alphabet, background_pwm)
+            self.negative_pwm = computePWM(negative_dataset, pseudocount_value, alphabet, background_pwm)
         else:
             self.positive_pwm = computePWM(positive_dataset, pseudocount_value, alphabet)
             self.negative_pwm = computePWM(negative_dataset, pseudocount_value, alphabet)
@@ -29,7 +29,7 @@ class ClassificationPWM:
     """
     This function should take in a list of sequences and a pseudocount value, and return the PWM as a dictionary that maps an amino acid to a list of numbers. """
     @staticmethod
-    def computePWM(dataset, pseudocount_value, alphabet, background_freqs = False):
+    def computePWM(dataset, pseudocount_value, alphabet, background_pwm = False):
         sequence_length = len(dataset[0])
         for i in range(1, len(dataset)):
             if len(dataset[i]) != sequence_length:
@@ -47,8 +47,8 @@ class ClassificationPWM:
             for i in range(0, len(dataset)):
                 counts[dataset[i][position]] += 1
             for amino_acid, count in counts.items():
-                if background_freqs:
-                    pwm[amino_acid].append(math.log2((count + pseudocount_value/num_amino_acids)/(background_freqs[amino_acid]*(num_sequences + pseudocount_value))))
+                if background_pwm:
+                    pwm[amino_acid].append(math.log2((count + pseudocount_value/num_amino_acids)/(background_pwm[amino_acid][position]*(num_sequences + pseudocount_value))))
                 else:
                     #in the numerator, we need to divide the pseudocount value by the number of amino acids.
                     pwm[amino_acid].append(math.log2((count + pseudocount_value/num_amino_acids)/(num_sequences + pseudocount_value)))
