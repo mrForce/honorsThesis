@@ -19,7 +19,7 @@
 {\Huge March 26 2017}\\[5mm]
 
 %\textit{N.B.: The following is a sample entry from Mikhail Klassen's research diary. It is intended to be illustrative of how WriteLaTeX can be used the keep track of your research progress. Some names have been removed from this document for privacy.}
-Right now I'm working on a script that will take CSV data that I download from IEDB, and add it to a Python pickle. This pickle will consist of a dictionary mapping the HLA allele name to a list of tuples. Each tuple maps a peptide to its Kd. I'm calling this script ``iedb.py''.
+Right now I'm working on a script that will take CSV data that I download from IEDB, and add it to a Python pickle. This pickle will have an object of the IEDBData class, which consist of a dictionary mapping the HLA allele name to a list of tuples, as well as a string representing the IEDB filters. Each tuple maps a peptide to its Kd. I'm calling this script ``iedb.py''.
 
 
 Here's the text of the help function:
@@ -45,17 +45,17 @@ optional arguments:
   --showIEDBFilters     Prints out the IEDB filters that were used to collect
                         data (other than the HLA allele) (default: False)
   --setIEDBFilters IEDBFilters
-                        Sets the IEDB filters that were used to collect the
-                        data. Simply pass in a string with quotes around it.
-                        Do not pass the HLA allele name to this
+                        Sets the IEDB filters that were used to collect all of
+                        the data in the pickle. You probably shouldn't need to
+                        call this more than once. Simply pass in a string with
+                        quotes around it. Do not pass the HLA allele name to
+                        this
 \end{lstlisting}
 
 
 \begin{activityTime}
-  \activity{10:15}{14:30}{Filled out as much of the TA application as possible, emailed Swapna and Maifi}
-  \activity{14:30}{16:07}{Finished genomics homework}
-  \activity{4:45}{5:50}{Worked on thesis}
-  \activity{5:50}{6:00}{Emailing and facebooking}
+  \activity{10:15}{12:15}{Worked on IEDB parse and storage}
+  \activity{13:15}{14:30}{Worked on IEDB parse and storage. Looks like the script works.}
 \end{activityTime}
 
 
