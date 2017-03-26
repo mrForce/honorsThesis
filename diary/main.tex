@@ -1,0 +1,64 @@
+%%% Template by Mikhail Klassen, April 2013
+%%% Template modified by Jordan Force, March 2017
+%%% 
+\documentclass[11pt,letterpaper]{article}
+
+%\newcommand{\workingDate}{\textsc{2017 $|$ March $|$ 24}}
+\newcommand{\userName}{Jordan Force}
+\newcommand{\institution}{University of Connecticut}
+\usepackage{researchdiary_png}
+\usepackage{listings}
+% To add your univeristy logo to the upper right, simply
+% upload a file named "logo.png" using the files menu above.
+
+\begin{document}
+%\univlogo
+
+\title{MHC I Diary}
+
+{\Huge March 26 2017}\\[5mm]
+
+%\textit{N.B.: The following is a sample entry from Mikhail Klassen's research diary. It is intended to be illustrative of how WriteLaTeX can be used the keep track of your research progress. Some names have been removed from this document for privacy.}
+Right now I'm working on a script that will take CSV data that I download from IEDB, and add it to a Python pickle. This pickle will consist of a dictionary mapping the HLA allele name to a list of tuples. Each tuple maps a peptide to its Kd. I'm calling this script ``iedb.py''.
+
+
+Here's the text of the help function:
+
+\begin{lstlisting}
+[jforce@jforce TrainingSystems]$ python iedb.py -h
+usage: iedb.py [-h] [--listHLA] [--addHLA hla_name csv_file]
+               [--showIEDBFilters] [--setIEDBFilters IEDBFilters]
+               dataPickle
+
+Manipulate the storage of HLA allele data
+
+positional arguments:
+  dataPickle            Give us the name of the pickle we are working with. If
+                        it doesn't exist, then I will create it.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --listHLA             Lists the HLA alleles that are already in the pickle
+                        (default: False)
+  --addHLA hla_name csv_file
+                        Adds the HLA with NAME and CSV data to the pickle
+  --showIEDBFilters     Prints out the IEDB filters that were used to collect
+                        data (other than the HLA allele) (default: False)
+  --setIEDBFilters IEDBFilters
+                        Sets the IEDB filters that were used to collect the
+                        data. Simply pass in a string with quotes around it.
+                        Do not pass the HLA allele name to this
+\end{lstlisting}
+
+
+\begin{activityTime}
+  \activity{10:15}{14:30}{Filled out as much of the TA application as possible, emailed Swapna and Maifi}
+  \activity{14:30}{16:07}{Finished genomics homework}
+  \activity{4:45}{5:50}{Worked on thesis}
+  \activity{5:50}{6:00}{Emailing and facebooking}
+\end{activityTime}
+
+
+
+
+\end{document}
