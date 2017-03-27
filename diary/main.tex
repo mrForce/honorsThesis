@@ -53,9 +53,12 @@ optional arguments:
 \end{lstlisting}
 
 
+\paragraph{} Unfortunately, running Netchop on thousands of proteins takes a long time. One of the things I would do is run 4 at a time, but I kept having issues with the subprocess pipe filling up. So, I made a temporary file to write the output to, but now the output from the call to netchop using the second to last protein seems to get passed to the get\_pieces function. I'm trying to figure out why, but I'm not having much luck.  
+
 \begin{activityTime}
   \activity{10:15}{12:15}{Worked on IEDB parse and storage}
   \activity{13:15}{14:30}{Worked on IEDB parse and storage. Looks like the script works.}
+  \activity{16:30}{20:30}{Fixed an issue with the netchop script. Now, it will run up to 4 jobs in parallel. Sometimes, when netchop would run, the pipe allocated to it would fill up with the output. Now, I have it writing to a named temporary file}
 \end{activityTime}
 
 
