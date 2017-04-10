@@ -1,5 +1,8 @@
 setup.py
 TrainingSystems/__init__.py
+TrainingSystems/iedb.py
+TrainingSystems/iedb_data.py
+TrainingSystems/iedb_parse.py
 TrainingSystems/interfaces.py
 TrainingSystems/trainedsystems.py
 TrainingSystems.egg-info/PKG-INFO

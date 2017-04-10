@@ -38,4 +38,4 @@ def kabsch(points_one, points_two):
     if np.linalg.det(rotation_matrix) < 0:
         rotation_matrix = np.dot(rotation_matrix, np.array([(1, 0, 0), (0, 1, 0), (0, 0, -1)]))
     translation_matrix = np.dot(-1*rotation_matrix, centroid_one) + centroid_two
-    
+    return (rotation_matrix, translation_matrix)

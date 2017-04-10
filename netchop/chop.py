@@ -3,6 +3,7 @@ import os
 import time
 from Bio import SeqIO
 import tempfile
+from collections import Counter
 import progressbar
 import subprocess
 import re
@@ -16,11 +17,11 @@ ERAP1 and 2 trim from left to right
 regex = re.compile('(\d+)\s+\w\s+(\d+\.\d+)\s+.+')
 
 def get_pieces(protein, chunk_width, netchop_output):
-    print('netchop output')
-    print(netchop_output)
+#    print('netchop output')
+#    print(netchop_output)
     pieces = list()
-    print('protein')
-    print(protein)
+#    print('protein')
+#    print(protein)
     for x in netchop_output.split('\n'):
         m = regex.match(x)
         if m != None:
@@ -83,7 +84,7 @@ with open(args.outputFile, 'w') as f:
 
             output_file = tempfile.NamedTemporaryFile()
             #if we use stdout=subprocess.PIPE, the pipe tends to fill up.
-            job = (subprocess.Popen(['netchop -m netchop -n --threshold 0.5 ' + tf.name], stdout=output_file, encoding='utf-8', close_fds=True, shell=True), tf, output_file)
+            job = (subprocess.Popen(['netchop -m netchop -n --threshold 0.5 ' + tf.name], stdout=output_file, encoding='utf-8', close_fds=True, shell=True), tf, output_file, str(seq_record.seq))
             jobs.append(job)
 
             while (len(jobs) == max_num_jobs) or (len(jobs) > 0 and j + len(jobs) >= num_sequences):
@@ -95,19 +96,22 @@ with open(args.outputFile, 'w') as f:
                     poll_result = jobs[i][0].poll()
                     if poll_result != None:
                         jobs[i][2].seek(0)
-                        input(jobs[i][2].name)
+                        #input(jobs[i][2].name)
                         output = jobs[i][2].read().decode('utf-8')
-                        print('output')
-                        print(output)
-                        pieces = get_pieces(str(seq_record.seq), chunk_width, output)
-                        print('pieces')
-                        print(pieces)
+#                        print('output')
+#                        print(output)
+#                        print('output filename')
+#                        input(jobs[i][2].name)
+
+                        pieces = get_pieces(jobs[i][3], chunk_width, output)
+#                        print('pieces')
+#                        print(pieces)
                         for x in pieces:
                             f.write(x + '\n')
                         if args.checkBackgroundComplete:
                             chunks.extend(pieces)
                         j += 1
-                        print('j: ' + str(j))
+                    #    print('j: ' + str(j))
                         bar.update(j)
                         indices_to_delete.append(i)
                         jobs[i][1].close()

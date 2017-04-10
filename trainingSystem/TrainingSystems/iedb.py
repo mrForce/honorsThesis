@@ -4,30 +4,7 @@ import sys
 import pickle
 import argparse
 from Bio.Alphabet import IUPAC
-
-class Error(Exception):
-    pass
-
-class HLAAlreadyDefinedError(Error):
-    pass
-
-class IEDBData:
-    def __init__(self):
-        self.iedb_filters = False
-        self.data = dict()
-    def get_iedb_filters(self):
-        return self.iedb_filters
-
-    def set_iedb_filters(self, iedb_filters):
-        self.iedb_filters = iedb_filters
-    #values is a list of tuples of form [(peptide, Kd)...]
-    def add_data(self, hla_name, values):
-        if hla_name in self.data:
-            raise HLAAlreadyDefinedError
-        else:
-            self.data[hla_name] = values
-    def get_data(self):
-        return self.data
+from iedb_data import *
 
 
     
@@ -76,6 +53,7 @@ def getData(parsed_lines):
             position_criteria = no_position or ending_position - starting_position + 1 == len(peptide) 
             kd = float(entry['Quantitative measurement'])
             if object_type == 'Linear peptide' and all([aa in IUPAC.protein.letters for aa in peptide]) and position_criteria:
+                print('added to data')
                 data.append((peptide, kd))
             else:
                 print('I\'m not sure if I should keep this (on line: ' + str(line_number) + '):')
@@ -99,6 +77,7 @@ def getData(parsed_lines):
                             keepGoing = False 
 
         line_number += 1
+    return data
 
 
 parser = argparse.ArgumentParser(description='Manipulate the storage of HLA allele data')
@@ -157,7 +136,7 @@ if args.addHLA:
         if keepGoing != 'yes':
             sys.exit('exiting')
     file_name = args.addHLA[1]
-    with open(file_name, 'r') as f:
+    with open(file_name, 'r', encoding='utf-8') as f:
         reader = csv.reader(f)
         lines = list(reader)
         data = getData(lines)

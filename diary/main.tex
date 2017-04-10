@@ -6,6 +6,7 @@
 %\newcommand{\workingDate}{\textsc{2017 $|$ March $|$ 24}}
 \newcommand{\userName}{Jordan Force}
 \newcommand{\institution}{University of Connecticut}
+\usepackage{algpseudocode}
 \usepackage{researchdiary_png}
 \usepackage{listings}
 % To add your univeristy logo to the upper right, simply
@@ -61,7 +62,38 @@ optional arguments:
   \activity{16:30}{20:30}{Fixed an issue with the netchop script. Now, it will run up to 4 jobs in parallel. Sometimes, when netchop would run, the pipe allocated to it would fill up with the output. Now, I have it writing to a named temporary file}
 \end{activityTime}
 
+{\Huge March 27 2017}\\[5mm]
 
+\paragraph{} My script basically consists of the following:
+
+\begin{algorithmic}
+  \For{files in FASTA FILES}
+  \For{sequences in file}
+  Initialize a job, and add to jobs buffer.
+  \While{Jobs buffer is full (or the ones in it are the last jobs that will be ran)}
+  Sleep for 0.1 seconds
+  \ForAll{Jobs in jobs buffer}
+  Check if job is complete. If so, process output and remove job from buffer
+  \EndFor
+  \EndWhile
+  \EndFor
+  \EndFor
+\end{algorithmic}
+
+My problem was that when I would process the output of netchop, I would use the sequence in the second For loop as the protein sequence, and cut it into pieces given the cut points from netchop. To fix my problem, I needed to store the sequence that was used to initialize the job, and then cut that sequence up using the netchop output.
+
+\begin{activityTime}
+  \activity{8:30}{9:10}{Fixed the bug in the netchop script.}
+  \activity{9:10}{9:55}{Ran the netchop script}
+\end{activityTime}
+
+{\Huge March 28 2017}\\[5mm]
+
+\paragraph{} I ran the example.py script, and got a reasonable specificity and sensitivity. I'll try to explore more data on Friday.
+
+\begin{activityTime}
+  \activity{11:00}{11:30}{Got some results}
+\end{activityTime}
 
 
 \end{document}
