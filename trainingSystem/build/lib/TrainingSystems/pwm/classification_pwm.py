@@ -167,3 +167,6 @@ class PWMBinaryClassifier(AbstractBinaryClassifier):
 
     def get_positive_score(self, peptide):
         return self.classifier.computePositiveScore(peptide)
+
+    def get_negative_score(self, peptide):
+        return self.classifier.computeNegativeScore(peptide)

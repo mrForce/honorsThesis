@@ -9,6 +9,8 @@ TrainingSystems.egg-info/PKG-INFO
 TrainingSystems.egg-info/SOURCES.txt
 TrainingSystems.egg-info/dependency_links.txt
 TrainingSystems.egg-info/top_level.txt
+TrainingSystems/hmm/__init__.py
+TrainingSystems/hmm/classification_hmm.py
 TrainingSystems/pwm/__init__.py
 TrainingSystems/pwm/classification_pwm.py
 TrainingSystems/pwm/pwm.py

@@ -1,2 +1,2 @@
 
-__all__ = ['classification_pwm']
+__all__ = ['classification_pwm', 'classification_hmm']
