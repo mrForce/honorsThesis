@@ -14,3 +14,7 @@ TrainingSystems/hmm/classification_hmm.py
 TrainingSystems/pwm/__init__.py
 TrainingSystems/pwm/classification_pwm.py
 TrainingSystems/pwm/pwm.py
+TrainingSystems/smm/__init__.py
+TrainingSystems/smm/smm.py
+TrainingSystems/smm/smm_subclasses.py
+TrainingSystems/smm/smm_use.py

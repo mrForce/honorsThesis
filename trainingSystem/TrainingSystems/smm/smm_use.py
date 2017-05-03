@@ -1,7 +1,8 @@
 import subprocess
 import tempfile
 
-from smm import SMMTrainInput, TrainingDataType, SequenceDataType, DataPointType, SMMTrainOutput, SMMPredictor, SMMPredictInput, SMMPredictOutput, PredictType, parse
+
+from TrainingSystems.smm import SMMTrainInput, TrainingDataType, SequenceDataType, DataPointType, SMMTrainOutput, SMMPredictor, SMMPredictInput, SMMPredictOutput, PredictType, parse
 
 class SMMUse:
     #measurements is a list of the form [sequence, measurement]
